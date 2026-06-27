@@ -10,6 +10,7 @@ function App() {
   const [result, setResult] = useState(null)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/bfhl'
 
   const parseInput = (value) =>
     value
@@ -24,7 +25,7 @@ function App() {
     setResult(null)
 
     try {
-      const response = await fetch('http://localhost:5000/bfhl', {
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ data: parseInput(input) }),
